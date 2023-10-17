@@ -1,0 +1,22 @@
+{{define "content"}}
+<div class="container">
+    <div class="d-flex flex-direction-column m-5">
+{{range $i, $k := .}}
+    <div class="card m-2" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{$k.Name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{$k.Device}}</h6>
+            {{if $k.Status}}
+            <h6 class="card-subtitle mb-2 text-muted">Current video</h6>
+            {{end}}
+            {{if eq $k.Status false}}
+                <a href="/admin/{{$k.Name}}" class="card-link">Change video</a>
+            {{end}}
+            <iframe src={{$k.Link}} rameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen width=100% height=60%></iframe>
+
+        </div>
+    </div>
+{{end}}
+    </div>
+</div>
+{{end}}

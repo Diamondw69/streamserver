@@ -1,0 +1,30 @@
+{{define "content"}}
+<div class="container m-5 ">
+ <div class="container">
+   <h3>How to insert video?</h3>
+    <p>Choose video from youtube</p>
+    <p>Press share and then embed</p>
+    <p>Copy part of text from src within quotes and insert it in form below</p>
+    <p>Example:</p>
+   <p style="display:inline">src="<p  style="display:inline;background-color: yellow">https://www.youtube.com/embed/zIwtfjgAmQM?si=KSQgD6AZEx5g-Vy6</p>"
+ </div>
+  <div class="container">
+    <h5>Inserting Form</h5>
+<form method="post">
+  <div class="form-group">
+    <label for="nameVideo">Name of the video</label>
+    <input type="text" id="nameVideo" name="name" class="form-control"  placeholder="Enter name">
+  </div>
+  <div class="form-group">
+    <label for="link">Link for the video</label>
+    <input type="text" class="form-control" name="link" id="link" placeholder="Enter Link">
+  </div>
+    <div class="form-group">
+        <label for="device">Device</label>
+        <input type="text" class="form-control" name="device" id="device" placeholder="Enter Device">
+    </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+  </div>
+</div>
+{{end}}

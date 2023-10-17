@@ -1,0 +1,14 @@
+{{define "content"}}
+    <div class="container">
+        <div class="d-flex flex-direction-column m-5">
+            {{range $i, $k := .}}
+                <div class="card m-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$k.Device}}</h5>
+                        <a href="/stream/{{$k.Device}}" class="card-link">Go to the Stream</a>
+                    </div>
+                </div>
+            {{end}}
+        </div>
+    </div>
+{{end}}
