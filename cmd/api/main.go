@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	_ "github.com/lib/pq"
 	"net/http"
@@ -11,9 +12,17 @@ import (
 
 func main() {
 	dataBase := dbconnection.DbConnection()
-	defer dataBase.Close()
+	defer func(dataBase *sql.DB) {
+		err := dataBase.Close()
+		if err != nil {
+
+		}
+	}(dataBase)
 	App := service.Application{DB: dataBase}
 	routerMake := router.MakeRouter(App)
 	fmt.Println("Starting a server on port: 8080")
-	http.ListenAndServe(":8080", routerMake)
+	err := http.ListenAndServe(":8080", routerMake)
+	if err != nil {
+		return
+	}
 }

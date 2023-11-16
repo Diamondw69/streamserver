@@ -23,7 +23,10 @@ func (a Application) StreamPageHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Problem")
 	}
 	link, _ := data.LinkModel.GetByStatusAndDevice(data.LinkModel{DB: a.DB}, true, device)
-	tmpl.ExecuteTemplate(w, "base", link)
+	err = tmpl.ExecuteTemplate(w, "base", link)
+	if err != nil {
+		return
+	}
 }
 
 func (a Application) InsertHandler(w http.ResponseWriter, r *http.Request) {
@@ -46,7 +49,10 @@ func (a Application) InsertPageHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println("error at insert html loader	")
 	}
-	tmpl.ExecuteTemplate(w, "base", nil)
+	err = tmpl.ExecuteTemplate(w, "base", nil)
+	if err != nil {
+		return
+	}
 }
 func (a Application) AdminPageHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.New("").ParseFiles("cmd/api/static/templates/adminpage.html", "cmd/api/static/templates/base.html")
@@ -54,7 +60,10 @@ func (a Application) AdminPageHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	tmpl.ExecuteTemplate(w, "base", links)
+	err = tmpl.ExecuteTemplate(w, "base", links)
+	if err != nil {
+		return
+	}
 }
 
 func (a Application) MainPageHandler(w http.ResponseWriter, r *http.Request) {
@@ -63,7 +72,10 @@ func (a Application) MainPageHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	tmpl.ExecuteTemplate(w, "base", links)
+	err = tmpl.ExecuteTemplate(w, "base", links)
+	if err != nil {
+		return
+	}
 }
 
 func (a Application) SelectHandler(w http.ResponseWriter, r *http.Request) {
