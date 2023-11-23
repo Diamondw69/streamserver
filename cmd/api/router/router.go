@@ -8,7 +8,6 @@ import (
 func MakeRouter(application service.Application) *mux.Router {
 	router := mux.NewRouter()
 	//other urls
-	router.HandleFunc("/insert", application.InsertPageHandler).Methods("GET", "OPTIONS")
 	router.HandleFunc("/insert", application.InsertHandler).Methods("POST", "OPTIONS")
 	router.HandleFunc("/stream/{id}", application.StreamPageHandler).Methods("GET", "OPTIONS")
 	router.HandleFunc("/", application.MainPageHandler).Methods("GET", "OPTIONS")
