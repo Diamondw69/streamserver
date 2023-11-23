@@ -170,7 +170,7 @@ function AdminPage({videos}) {
         );
 }
 
-function MainPage({devices}) {
+function MainPage() {
     const [items, setItems] = useState(null);
     const fetchData = async () => {
         try {
@@ -185,7 +185,7 @@ function MainPage({devices}) {
     return (
         <div className="container">
             <div className="d-flex flex-column m-5">
-                {devices.map((device, index) => (
+                {items.map((device, index) => (
                     <div className="card m-2" style={{ width: '18rem' }} key={index}>
                         <div className="card-body">
                             <h5 className="card-title">{device.Device}</h5>
