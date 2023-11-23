@@ -21,7 +21,6 @@ type Answer struct {
 func (a Application) StreamPageHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	device := vars["id"]
-	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	link, _ := data.LinkModel.GetByStatusAndDevice(data.LinkModel{DB: a.DB}, true, device)
 	err := helpers.WriteJSON(w, 303, link, nil)
@@ -42,7 +41,6 @@ func (a Application) InsertHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	answer := Answer{
 		message: links.Name + "was updated",
@@ -73,7 +71,6 @@ func (a Application) AdminPageHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	err = helpers.WriteJSON(w, 303, links, nil)
 	if err != nil {
@@ -86,7 +83,6 @@ func (a Application) MainPageHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	err = helpers.WriteJSON(w, 303, links, nil)
 	if err != nil {
