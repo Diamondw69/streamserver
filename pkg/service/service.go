@@ -23,7 +23,7 @@ func (a Application) StreamPageHandler(w http.ResponseWriter, r *http.Request) {
 	device := vars["id"]
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	link, _ := data.LinkModel.GetByStatusAndDevice(data.LinkModel{DB: a.DB}, true, device)
-	err := helpers.WriteJSON(w, 303, link, nil)
+	err := helpers.WriteJSON(w, 200, link, nil)
 	if err != nil {
 		return
 	}
@@ -46,11 +46,10 @@ func (a Application) InsertHandler(w http.ResponseWriter, r *http.Request) {
 		message: links.Name + "was updated",
 		status:  "Ok",
 	}
-	err = helpers.WriteJSON(w, 303, answer, nil)
+	err = helpers.WriteJSON(w, 200, answer, nil)
 	if err != nil {
 		return
 	}
-	http.Redirect(w, r, "/", 303)
 }
 
 // AdminPageHandler
@@ -72,7 +71,7 @@ func (a Application) AdminPageHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	err = helpers.WriteJSON(w, 303, links, nil)
+	err = helpers.WriteJSON(w, 200, links, nil)
 	if err != nil {
 		return
 	}
@@ -84,7 +83,7 @@ func (a Application) MainPageHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	err = helpers.WriteJSON(w, 303, links, nil)
+	err = helpers.WriteJSON(w, 200, links, nil)
 	if err != nil {
 		return
 	}
